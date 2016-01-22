@@ -1,0 +1,3 @@
+.vagrant
+customization/ssh-keys/
+*.swp
