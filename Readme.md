@@ -1,6 +1,6 @@
-# Vagrant Virtual Box Machine for Ubuntu 14.04/Desktop
+# Ubuntu 14.04/Desktop Vagrant setup for Developers
 
-This is just a Vagrant setup for a Ubuntu VirtuaBox for developers. The VM contains:
+This is just a Vagrant setup for an Ubuntu VirtuaBox for developers. The VM contains:
 
 * Ubuntu Trusty 14.04
 * Mate-Desktop
@@ -83,7 +83,7 @@ If you start the virtual machine from the VirtualBox Manager, you cannot change 
 
 ## login
 
-Autologin is activated. The user is `vagrant` and the password is `vagrant`. This is a sudo-user who is allowed to do all (wit h `sudo`).
+Autologin is activated. The user is `vagrant` and the password is `vagrant`. This is a sudo-user who is allowed to do all (with `sudo`).
 
 # License & Warranty
 
