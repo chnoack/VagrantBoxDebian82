@@ -51,9 +51,6 @@ wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add
 sh -c 'echo "deb http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list'
 add-apt-repository ppa:webupd8team/atom
 
-sudo apt-add-repository ppa:ubuntu-mate-dev/ppa
-sudo apt-add-repository ppa:ubuntu-mate-dev/trusty-mate
-
 apt-get update
 
 apt-get install -y wget apt-cacher-ng build-essential libsdl1.2debian python-software-properties debconf-utils git-core zlib1g-dev postgresql libpq-dev zip sqlite3 libsqlite3-dev pgadmin3
@@ -63,7 +60,7 @@ apt-get install -y google-chrome-stable nodejs npm
 apt-get install --yes --force-yes -f docker-engine
 apt-get install --yes --force-yes -f atom
 
-sudo apt-get install -y --no-install-recommends ubuntu-mate-core ubuntu-mate-desktop
+sudo apt-get install -y --no-install-recommends mate-desktop-environment
 
 curl -L https://github.com/docker/compose/releases/download/1.5.2/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose
 chmod +x /usr/local/bin/docker-compose
