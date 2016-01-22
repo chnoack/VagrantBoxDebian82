@@ -1,8 +1,10 @@
 #!/bin/bash
 
 
-echo 'setxkbmap -layout de ' >> ~vagrant/.profile # set german keyboard layout for mac
-echo 'setxkbmap -layout de ' >> ~vagrant/.bashrc # set german keyboard layout for mac
+echo 'setxkbmap -layout de ' >> ~vagrant/.profile # set german keyboard layout for PC
+echo 'setxkbmap -layout de ' >> ~vagrant/.bashrc # set german keyboard layout for  PC
+#echo 'setxkbmap -layout de -variant mac' >> ~vagrant/.profile # set german keyboard layout for mac
+#echo 'setxkbmap -layout de  -variant mac' >> ~vagrant/.bashrc # set german keyboard layout for mac
 
 # allow sudo for user vagrant
 echo 'vagrant    ALL=(ALL:ALL) NOPASSWD: ALL' >> /etc/sudoers
@@ -115,3 +117,4 @@ http-proxy = ${http_proxy}
 EOF
 fi
 chown -R vagrant ~vagrant
+usermod -a -G docker vagrant
