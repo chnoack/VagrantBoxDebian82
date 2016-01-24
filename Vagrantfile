@@ -69,7 +69,7 @@ Vagrant.configure(2) do |config|
     #config.proxy.https    = "http://user:secet@example.com:port"
     #config.proxy.no_proxy = "localhost,127.0.0.1,.example.com"
 
-    ## Create a second disk, e.g. for use with docker 
+    ## Create a second disk, e.g. for use with docker
     #line = `VBoxManage list systemproperties | grep "Default machine folder"`
     #vb_machine_folder = line.split(':')[1].strip()
     #puts vb_machine_folder

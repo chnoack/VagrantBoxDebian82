@@ -1,8 +1,8 @@
-# Ubuntu 14.04/Desktop Vagrant setup for Developers
+# Debian 8.2/Desktop Vagrant setup for Developers
 
-This is just a Vagrant setup for an Ubuntu VirtuaBox for developers. The VM contains:
+This is just a Vagrant setup for an Debian VirtuaBox for developers. The VM contains:
 
-* Ubuntu Trusty 14.04
+* Debian 8.2
 * Mate-Desktop
 * postgresql
 * atom
@@ -23,6 +23,10 @@ This is just a Vagrant setup for an Ubuntu VirtuaBox for developers. The VM cont
 * the path of the folder where your VirtualBox installation stores the virtual machine disks in should not contain any spaces or special characters
 
 ## Adjust to your needs
+
+### Keyboad mapping
+
+In the first lines of `bootstrap.sh` keyboard mappings for PC and Mac are defined. Select the ones you need, adjust them if you wand and remove or comment the other ones.
 
 ### Proxy setup
 
