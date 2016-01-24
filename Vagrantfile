@@ -12,7 +12,7 @@ Vagrant.configure(2) do |config|
 
   # Every Vagrant development environment requires a box. You can search for
   # boxes at https://atlas.hashicorp.com/search.
-  config.vm.box = "ubuntu/trusty64"
+  config.vm.box = "bento/debian-8.2"
 
   # Disable automatic box update checking. If you disable this, then
   # boxes will only be checked for updates when the user runs
@@ -57,7 +57,7 @@ Vagrant.configure(2) do |config|
      # Display the VirtualBox GUI when booting the machine
      vb.gui = true
 
-    vb.name = "ubuntu-1404-gui-docker"
+    vb.name = "debian-8-mate"
 
     vb.customize ["modifyvm", :id, "--memory", 8192]
     vb.customize ["modifyvm", :id, "--vram", 64]
@@ -69,19 +69,18 @@ Vagrant.configure(2) do |config|
     #config.proxy.https    = "http://user:secet@example.com:port"
     #config.proxy.no_proxy = "localhost,127.0.0.1,.example.com"
 
-    # Get disk path
-    line = `VBoxManage list systemproperties | grep "Default machine folder"`
-    vb_machine_folder = line.split(':')[1].strip()
-    puts vb_machine_folder
-    puts vb.name
-    second_disk = File.join(vb_machine_folder, vb.name, 'docker.vdi')
-
-    # Create and attach disk
-    unless File.exist?(second_disk)
-      # 20 * 1024 = 20 GB
-      vb.customize ['createhd', '--filename', second_disk, '--format', 'VDI', '--size', 20 * 1024]
-    end
-    vb.customize ['storageattach', :id, '--storagectl', 'SATAController', '--port', 1, '--device', 0, '--type', 'hdd', '--medium', second_disk]
+    ## Create a second disk, e.g. for use with docker
+    #line = `VBoxManage list systemproperties | grep "Default machine folder"`
+    #vb_machine_folder = line.split(':')[1].strip()
+    #puts vb_machine_folder
+    #puts vb.name
+    #second_disk = File.join(vb_machine_folder, vb.name, 'docker.vdi')
+    ## Create and attach disk
+    #unless File.exist?(second_disk)
+    #  # 20 * 1024 = 20 GB
+    #  vb.customize ['createhd', '--filename', second_disk, '--format', 'VDI', '--size', 20 * 1024]
+    #end
+    #vb.customize ['storageattach', :id, '--storagectl', 'SATAController', '--port', 1, '--device', 0, '--type', 'hdd', '--medium', second_disk]
 
   end
 
