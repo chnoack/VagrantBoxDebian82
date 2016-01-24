@@ -13,7 +13,9 @@ usermod -a -G vboxfs vagrant
 
 apt-get update
 apt-get install -y mate-desktop-environment lightdm build-essential mate-terminal apt-transport-https software-properties-common wget apt-cacher-ng libsdl1.2debian python-software-properties debconf-utils git git-core zlib1g-dev postgresql libpq-dev zip sqlite3 libsqlite3-dev pgadmin3 libnss3 xdg-utils
-apt-get install -y linux-headers-$(uname -r)
+
+export KERNELVERSION=`uname -r`
+apt-get install -y linux-headers-$KERNELVERSION
 
 # update guest additions do 5.0.14
 cd /tmp
