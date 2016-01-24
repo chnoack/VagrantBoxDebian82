@@ -15,7 +15,7 @@ apt-get update
 apt-get install -y mate-desktop-environment lightdm build-essential mate-terminal apt-transport-https software-properties-common wget apt-cacher-ng libsdl1.2debian python-software-properties debconf-utils git git-core zlib1g-dev postgresql libpq-dev zip sqlite3 libsqlite3-dev pgadmin3 libnss3 xdg-utils
 apt-get install -y linux-headers-$(uname -r)
 
-# update guest additions do 5.0.12
+# update guest additions do 5.0.14
 cd /tmp
 wget http://download.virtualbox.org/virtualbox/5.0.14/VBoxGuestAdditions_5.0.14.iso
 mount ./VBoxGuestAdditions_5.0.14.iso /mnt
@@ -62,7 +62,7 @@ apt-get install -y google-chrome-stable nodejs npm
 
 # install docker
 
-apt-key adv --keyserer hkp://p80.pool.sks-keyservers.net:80 --recv-keys 58118E89F3A912897C070ADBF76221572C52609D
+apt-key add --keyserer hkp://p80.pool.sks-keyservers.net:80 --recv-keys 58118E89F3A912897C070ADBF76221572C52609D
 echo 'deb https://apt.dockerproject.org/repo debian-jessie main' > /etc/apt/sources.list.d/docker.list
 apt-get update
 apt-get install --yes --force-yes -f docker-engine
@@ -113,6 +113,10 @@ if [ -d "/vagrant/customization/" ]; then
   fi
 fi
 
+# install some fonts
+cd /tmp
+wget http://ftp.de.debian.org/debian/pool/main/f/fonts-liberation/fonts-liberation_1.07.4-1_all.deb
+dpkg -i fonts-liberation_1.07.4-1_all.deb
 
 # cleanup
 rm /tmp/rvm-install.sh

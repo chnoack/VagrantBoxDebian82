@@ -15,7 +15,7 @@ This is just a Vagrant setup for an Debian VirtuaBox for developers. The VM cont
 
 ## Prerequisist
 
-* Virtual Box: https://www.virtualbox.org  (may work with VMWare also)
+* Virtual Box: https://www.virtualbox.org 5.0.14 (may work with VMWare also)
 * Install Vagrant: https://www.vagrantup.com/downloads.html
 * Install Vagrant Proxy Conf: https://github.com/tmatilai/vagrant-proxyconf
 * start VirtualBox and configure the path you want your virtual boxes to be stored
