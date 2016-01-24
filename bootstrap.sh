@@ -1,9 +1,9 @@
 #!/bin/bash
 
-echo 'setxkbmap -layout de ' >> ~vagrant/.profile # set german keyboard layout for PC
-echo 'setxkbmap -layout de ' >> ~vagrant/.bashrc # set german keyboard layout for  PC
-#echo 'setxkbmap -layout de -variant mac' >> ~vagrant/.profile # set german keyboard layout for mac
-#echo 'setxkbmap -layout de  -variant mac' >> ~vagrant/.bashrc # setx german keyboard layout for mac
+#echo 'setxkbmap -layout de ' >> ~vagrant/.profile # set german keyboard layout for PC
+#echo 'setxkbmap -layout de ' >> ~vagrant/.bashrc # set german keyboard layout for  PC
+echo 'setxkbmap -layout de -variant mac' >> ~vagrant/.profile # set german keyboard layout for mac
+echo 'setxkbmap -layout de  -variant mac' >> ~vagrant/.bashrc # setx german keyboard layout for mac
 
 # allow sudo for user vagrant
 #echo 'vagrant    ALL=(ALL:ALL) NOPASSWD: ALL' >> /etc/sudoers
@@ -11,20 +11,6 @@ echo 'setxkbmap -layout de ' >> ~vagrant/.bashrc # set german keyboard layout fo
 groupadd vboxfs
 usermod -a -G vboxfs vagrant
 
-# setup for jdk 8 installation
-echo "deb http://ppa.launchpad.net/webupd8team/java/ubuntu trusty main" | tee /etc/apt/sources.list.d/webupd8team-java.list
-echo "deb-src http://ppa.launchpad.net/webupd8team/java/ubuntu trusty main" | tee -a /etc/apt/sources.list.d/webupd8team-java.list
-apt-key add --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys EEA14886
-
-# setup for chrome installation
-wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add -
-sh -c 'echo "deb http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list'
-
-#setup for docker installation
-apt-key adv --keyserer hkp://p80.pool.sks-keyservers.net:80 --recv-keys 58118E89F3A912897C070ADBF76221572C52609D
-echo 'deb https://apt.dockerproject.org/repo debian-jessie main' > /etc/apt/sources.list.d/docker.list
-
-# install needed debian packages
 apt-get update
 apt-get install -y mate-desktop-environment lightdm build-essential mate-terminal apt-transport-https software-properties-common wget apt-cacher-ng libsdl1.2debian python-software-properties debconf-utils git git-core zlib1g-dev postgresql libpq-dev zip sqlite3 libsqlite3-dev pgadmin3 libnss3 xdg-utils
 apt-get install -y linux-headers-$(uname -r)
@@ -36,13 +22,6 @@ mount ./VBoxGuestAdditions_5.0.14.iso /mnt
 /mnt/VBoxLinuxAdditions.run
 umount /mnt
 
-
-# install jdk 8
-echo "oracle-java8-installer shared/accepted-oracle-license-v1-1 select true" | debconf-set-selections
-apt-get install --yes --force-yes oracle-java8-installer
-
-# install chrome
-apt-get install -y google-chrome-stable nodejs npm
 
 ## make partition for docker if it does not already exist
 # docker_disk_is_formatted=`blkid /dev/sdb1`
@@ -64,7 +43,28 @@ apt-get install -y google-chrome-stable nodejs npm
 # fi
 # mount -a
 
+# install software
+
+
+# install jdk 8
+echo "deb http://ppa.launchpad.net/webupd8team/java/ubuntu trusty main" | tee /etc/apt/sources.list.d/webupd8team-java.list
+echo "deb-src http://ppa.launchpad.net/webupd8team/java/ubuntu trusty main" | tee -a /etc/apt/sources.list.d/webupd8team-java.list
+apt-key add --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys EEA14886
+apt-get update
+echo "oracle-java8-installer shared/accepted-oracle-license-v1-1 select true" | debconf-set-selections
+apt-get install --yes --force-yes oracle-java8-installer
+
+# install chrome
+wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add -
+sh -c 'echo "deb http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list'
+apt-get update
+apt-get install -y google-chrome-stable nodejs npm
+
 # install docker
+
+apt-key adv --keyserer hkp://p80.pool.sks-keyservers.net:80 --recv-keys 58118E89F3A912897C070ADBF76221572C52609D
+echo 'deb https://apt.dockerproject.org/repo debian-jessie main' > /etc/apt/sources.list.d/docker.list
+apt-get update
 apt-get install --yes --force-yes -f docker-engine
 curl -L https://github.com/docker/compose/releases/download/1.5.2/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose
 chmod +x /usr/local/bin/docker-compose
