@@ -49,7 +49,7 @@ umount /mnt
 # install jdk 8
 echo "deb http://ppa.launchpad.net/webupd8team/java/ubuntu trusty main" | tee /etc/apt/sources.list.d/webupd8team-java.list
 echo "deb-src http://ppa.launchpad.net/webupd8team/java/ubuntu trusty main" | tee -a /etc/apt/sources.list.d/webupd8team-java.list
-apt-key add --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys EEA14886
+apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys EEA14886
 apt-get update
 echo "oracle-java8-installer shared/accepted-oracle-license-v1-1 select true" | debconf-set-selections
 apt-get install --yes --force-yes oracle-java8-installer
@@ -62,7 +62,7 @@ apt-get install -y google-chrome-stable nodejs npm
 
 # install docker
 
-apt-key add --keyserer hkp://p80.pool.sks-keyservers.net:80 --recv-keys 58118E89F3A912897C070ADBF76221572C52609D
+apt-key adv --keyserer hkp://p80.pool.sks-keyservers.net:80 --recv-keys 58118E89F3A912897C070ADBF76221572C52609D
 echo 'deb https://apt.dockerproject.org/repo debian-jessie main' > /etc/apt/sources.list.d/docker.list
 apt-get update
 apt-get install --yes --force-yes -f docker-engine
