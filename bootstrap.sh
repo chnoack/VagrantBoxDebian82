@@ -7,7 +7,8 @@ echo 'setxkbmap -layout de  -variant mac' >> ~vagrant/.bashrc # setx german keyb
 
 # improve proxy settings for vagrant proxy plugin
 echo "source /etc/profile.d/proxy.sh" >> ~vagrant/.bashrc
-
+cp /vagrant/set-gnome-proxy.sh  ~vagrant/.set-gnome-proxy.sh
+echo "sh ./.set-gnome-proxy.sh" >> ~/.profile
 
 
 # allow sudo for user vagrant
@@ -17,7 +18,10 @@ groupadd vboxfs
 usermod -a -G vboxfs vagrant
 
 apt-get update
-apt-get install -y mate-desktop-environment lightdm build-essential mate-terminal apt-transport-https software-properties-common wget apt-cacher-ng libsdl1.2debian python-software-properties debconf-utils git git-core zlib1g-dev postgresql libpq-dev zip sqlite3 libsqlite3-dev pgadmin3 libnss3 xdg-utils
+apt-get install -y mate-desktop-environment lightdm build-essential mate-terminal \
+  apt-transport-https software-properties-common wget apt-cacher-ng libsdl1.2debian \
+  python-software-properties debconf-utils git git-core zlib1g-dev postgresql libpq-dev \
+  zip sqlite3 libsqlite3-dev pgadmin3 libnss3 xdg-utils iceweasel
 
 export KERNELVERSION=`uname -r`
 apt-get install -y linux-headers-$KERNELVERSION
@@ -95,7 +99,7 @@ su - vagrant -c  'gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C27
 sudo -u vagrant -H sh -c 'bash /tmp/rvm-install.sh'
 su - vagrant -c 'rvm install 2.2.2'
 echo 'export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting' >> ~vagrant/.bashrc
-echo '[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scriptss/rvm" # Load RVM into a shell session *as a function*' >> ~vagrant/.bashrc
+echo '[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*' >> ~vagrant/.bashrc
 
 # vagrant proxy plugin settings
 # sed -i "s/#includedir \/etc\/sudoers.d/includedir \/etc\/sudoers.d/" /etc/sudoers
@@ -120,6 +124,7 @@ wget http://www.syntevo.com/downloads/smartgit/smartgit-generic-7_0_5.tar.gz
 cd /usr/local
 tar xzvf /tmp/smartgit-generic-7_0_5.tar.gz
 echo "export PATH=\$PATH:/usr/local/smartgit/bin" >> ~vagrant/.bashrc
+
 
 # cleanup
 rm /tmp/rvm-install.sh

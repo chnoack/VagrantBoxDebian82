@@ -20,4 +20,8 @@ if [ -d "/vagrant/customization/" ]; then
       cd ~ vagrant; tar xzvf /vagrant/customization/smartgit.tgz
     fi
 
+    if [ -f "/vagrant/customization/mate-conf.tgz" ]; then
+      cd ~ vagrant; tar xzvf /vagrant/customization/mate-conf.tgz
+    fi
+
 fi
