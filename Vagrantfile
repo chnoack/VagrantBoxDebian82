@@ -61,13 +61,13 @@ Vagrant.configure(2) do |config|
 
     vb.customize ["modifyvm", :id, "--memory", 8192]
     vb.customize ["modifyvm", :id, "--vram", 64]
-    vb.customize ["modifyvm", :id, "--accelerate3d", "on"]
-
+    vb.customize ["modifyvm", :id, "--accelerate3d", "off"]
 
     # proxy configuration, you have to 'vagrant plugin install vagrant-proxyconf'
-    #config.proxy.http     = "http://user:secet@example.com:port"
-    #config.proxy.https    = "http://user:secet@example.com:port"
-    #config.proxy.no_proxy = "localhost,127.0.0.1,.example.com"
+    # set the following environment variables before starting vagrant
+    # VAGRANT_HTTP_PROXY
+    # VAGRANT_HTTPS_PROXY
+    # VAGRANT_FTP_PROXY
 
     ## Create a second disk, e.g. for use with docker
     #line = `VBoxManage list systemproperties | grep "Default machine folder"`
