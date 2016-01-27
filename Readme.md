@@ -31,7 +31,14 @@ In the first lines of `bootstrap.sh` keyboard mappings for PC and Mac are define
 
 ### Proxy setup
 
-If you're virtual machine is behind a proxy, you can configure the proxy within the Vagrantfile (Vagrant Proxy Conf needed, see above). In your virtual machine the proxy configuration will then be set automatically for:
+If you're virtual machine is behind a proxy by setting the following environment variables before starting the vagrant box (Vagrant Proxy Conf needed, see above):
+* VAGRANT_HTTP_PROXY
+* VAGRANT_HTTPS_PROXY
+* VAGRANT_FTP_PROXY
+
+User credentials may be part of the settings, e.g. `export VAGRANT_HTTP_PROXY=http://hanswurst:mysecret@myproxy.example.com:8080`
+
+In your virtual machine the proxy configuration will then be set automatically for:
 * Apt
 * Docker
 * Git
