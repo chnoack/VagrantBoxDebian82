@@ -5,6 +5,11 @@
 echo 'setxkbmap -layout de -variant mac' >> ~vagrant/.profile # set german keyboard layout for mac
 echo 'setxkbmap -layout de  -variant mac' >> ~vagrant/.bashrc # setx german keyboard layout for mac
 
+# improve proxy settings for vagrant proxy plugin
+echo "source /etc/profile.d/proxy.sh" >> ~vagrant/.bashrc
+
+
+
 # allow sudo for user vagrant
 #echo 'vagrant    ALL=(ALL:ALL) NOPASSWD: ALL' >> /etc/sudoers
 #usermod -G admin vagrant
@@ -92,6 +97,8 @@ su - vagrant -c 'rvm install 2.2.2'
 echo 'export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting' >> ~vagrant/.bashrc
 echo '[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scriptss/rvm" # Load RVM into a shell session *as a function*' >> ~vagrant/.bashrc
 
+# vagrant proxy plugin settings
+# sed -i "s/#includedir \/etc\/sudoers.d/includedir \/etc\/sudoers.d/" /etc/sudoers
 
 
 # enable autologin for user vagrant
@@ -106,6 +113,13 @@ fi
 cd /tmp
 wget http://ftp.de.debian.org/debian/pool/main/f/fonts-liberation/fonts-liberation_1.07.4-1_all.deb
 dpkg -i fonts-liberation_1.07.4-1_all.deb
+
+# install smartgit
+cd /tmp
+wget http://www.syntevo.com/downloads/smartgit/smartgit-generic-7_0_5.tar.gz
+cd /usr/local
+tar xzvf /tmp/smartgit-generic-7_0_5.tar.gz
+echo "export PATH=\$PATH:/usr/local/smartgit/bin" >> ~vagrant/.bashrc
 
 # cleanup
 rm /tmp/rvm-install.sh
